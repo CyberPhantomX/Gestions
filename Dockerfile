@@ -1,18 +1,9 @@
-# Utilisation d'une image de base avec Node.js déjà installé
-FROM node:14
+# Utilisez une image Apache2 avec PHP préinstallé
+FROM php:apache
 
-# Définir le répertoire de travail dans le conteneur
-WORKDIR /app
+# Copiez les fichiers de votre application dans le conteneur
+COPY . /var/www/html
 
-# Installer les dépendances de l'application
-RUN npm install
-
-# Copier le reste du code source de l'application dans le répertoire de travail
-COPY . .
-
-# Exposer le port sur lequel l'application s'exécute
-EXPOSE 3000
-
-# Commande pour démarrer l'application
-CMD ["npm", "start"]
+# Exposez le port 80 pour qu'Apache2 puisse écouter les requêtes HTTP
+EXPOSE 80
 
