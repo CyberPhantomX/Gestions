@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.example</groupId>
+    <artifactId>gest-room</artifactId>
+    <version>1.0.0</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <frontend.source.dir>src</frontend.source.dir>
+        <backend.source.dir>BACKEND</backend.source.dir>
+    </properties>
+
+    <dependencies>
+        <!-- Ajoutez ici les dépendances Maven pour votre projet -->
+        <!-- Exemple :
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.3.34</version>
+        </dependency>
+        -->
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Plugin pour construire le frontend -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-frontend-plugin</artifactId>
+                <version>1.10.0</version> <!-- Modification de la version -->
+                <configuration>
+                    <workingDirectory>${frontend.source.dir}</workingDirectory>
+                    <installDirectory>${frontend.source.dir}</installDirectory>
+                    <nodeVersion>v14.18.1</nodeVersion>
+                    <npmVersion>8.2.0</npmVersion>
+                </configuration>
+                <!-- Les exécutions restent inchangées -->
+            </plugin>
+
+            <!-- Plugin pour construire le backend -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <!-- Configuration du plugin maven-war-plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+                </configuration>
+            </plugin>
+
+            <!-- Intégration des éléments du nouveau pom.xml -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-remote-resources-plugin</artifactId>
+                <!-- Ajouter les exécutions nécessaires -->
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <!-- Ajouter les exécutions nécessaires -->
+            </plugin>
+        </plugins>
+
+        <!-- Intégration des éléments du nouveau pom.xml -->
+        <finalName>gest-room</finalName>
+        <!-- Ajoutez ici vos plugins spécifiques si nécessaire -->
+    </build>
+
+    <repositories>
+        <!-- Ajoutez ici vos référentiels spécifiques si nécessaire -->
+    </repositories>
+
+</project>
